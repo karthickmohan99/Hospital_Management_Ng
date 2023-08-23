@@ -1,0 +1,59 @@
+<!-- Profile Sidebar -->
+<div class="profile-sidebar">
+    <div class="widget-profile pro-widget-content">
+        <div class="profile-info-widget">
+            <a href="#" class="booking-doc-img">
+                <img src="../../../../../assets/img/Avatar/download (1).jpg" alt="User Image">
+            </a>
+            <div class="profile-det-info">
+                <h3>Dr. {{detail.firstName}} {{detail.lastName}}</h3>
+                
+                <div class="patient-details">
+                    <h5 class="mb-0">{{detail.email}}</h5>
+                    <h5 class="mb-0">{{detail.phoneNumber}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-widget">
+        <nav class="dashboard-menu">
+            <ul>
+                <li class="active">
+                    <a routerLink="/doctor/dashboard">
+                        <i class="fas fa-columns"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/doctor/appointment">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>My Appointment</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/doctor/session">
+                        <i class="fas fa-hourglass-start"></i>
+                        <span>My session</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/doctor/patients">
+                        <i class="fas fa-user-injured"></i>
+                        <span>Patients</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a routerLink="/doctor/profile">
+                        <i class="fas fa-user-cog"></i>
+                        <span>Profile Settings</span>
+                        
+                    </a>
+                </li>
+                
+            </ul>
+        </nav>
+        
+    </div>
+</div>
+<!-- /Profile Sidebar -->

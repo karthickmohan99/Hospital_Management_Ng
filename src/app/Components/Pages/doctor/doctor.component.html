@@ -1,0 +1,339 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-12">
+
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a routerLink="/admin/doctor">Doctors</a></li>
+            <li class="breadcrumb-item active">List</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Page Header -->
+    <div class="d-flex align-items-center mb-3">
+
+      <h2 class="page-title ml-2 font-weight-bold">List of Doctors</h2>
+      <div class="ml-auto mr-5">
+        <p class="mb-0">
+          <i class="bi bi-calendar"></i> Today Date
+        </p>
+        <p class="mb-0 pt-2">
+          {{ currentDate }}
+        </p>
+      </div>
+
+
+    </div>
+    <div class="page-header">
+      <div class="d-flex align-items-center justify-content-between">
+        <button class="btn btn-primary mr-4 " (click)="open(content)" style="margin-bottom: 8px;">
+          <i class="bi bi-plus-circle"></i> Add New
+        </button>
+      </div>
+    </div>
+
+    <!-- /Page Header -->
+    <div class="appointment-tab">
+
+
+
+      <div class="tab-content">
+
+        <!-- Upcoming Appointment Tab -->
+        <div class="tab-pane show active" id="upcoming-appointments">
+          <div class="card card-table mb-0">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-center mb-0">
+                  <thead>
+                    <tr>
+                      <th>Doctor Name</th>
+                      <th>Email</th>
+                      <th>Speciality</th>
+                      <th class="text-center">Action</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let doctor of doctors | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                      <td>
+                        <h2 class="table-avatar">
+
+                          <a href="#">{{doctor.firstName}} <span>{{doctor.Qualification}}</span></a>
+                        </h2>
+                      </td>
+                      <td>{{doctor.email}}
+                      <td>{{doctor.specialties}}</td>
+
+
+                      <td class="text-right">
+                        <div class="table-action">
+                          <a (click)="openDetails(contentDetails1, doctor,true)" href="javascript:void(0);"
+                            class="btn btn-sm bg-info-light">
+                            <i class="far fa-eye"></i> View
+                          </a>
+
+                          <a (click)="openDetails(contentDetails, doctor,true)" href="javascript:void(0);"
+                            class="btn btn-sm bg-success-light">
+                            <i class="fas fa-check"></i> Edit
+                          </a>
+                          <a (click)="deleteDoctor(doctor.did)" href="javascript:void(0);"
+                            class="btn btn-sm bg-danger-light">
+                            <i class="fas fa-times"></i> Cancel
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="mt-8 py-5 d-flex justify-content-center align-items-center">
+              <pagination-controls (pageChange)="p = $event">
+
+              </pagination-controls>
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add New Doctor</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate>
+      <div class="form-group">
+        <label for="firstname">Firstname</label>
+        <div class="input-group">
+          <input id="firstname" class="form-control" name="firstName" ngModel required>
+        </div>
+        <div
+          *ngIf="f.controls['firstName'].invalid && (f.controls['firstName'].dirty || f.controls['firstName'].touched)"
+          class="text-danger">
+          <div *ngIf="f.controls['firstName'].errors?.['required']">First Name is required.</div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastname">LastName</label>
+        <div class="input-group">
+          <input id="lastname" class="form-control" name="lastName" ngModel required>
+        </div>
+        <div *ngIf="f.controls['lastName'].invalid && (f.controls['lastName'].dirty || f.controls['lastName'].touched)"
+          class="text-danger">
+          <div *ngIf="f.controls['lastName'].errors?.['required']">Last Name is required.</div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="qualification">Qualification</label>
+        <div class="input-group">
+          <input id="qualification" class="form-control" name="qualification" ngModel required>
+        </div>
+        <div
+          *ngIf="f.controls['qualification'].invalid && (f.controls['qualification'].dirty || f.controls['qualification'].touched)"
+          class="text-danger">
+          <div *ngIf="f.controls['qualification'].errors?.['required']">Qualification is required.</div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="specialties">Specialties</label>
+        <div class="input-group">
+          <input id="specialties" class="form-control" name="specialties" ngModel required>
+        </div>
+        <div
+          *ngIf="f.controls['specialties'].invalid && (f.controls['specialties'].dirty || f.controls['specialties'].touched)"
+          class="text-danger">
+          <div *ngIf="f.controls['specialties'].errors?.['required']">Specialties is required.</div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-group">
+          <input id="email" class="form-control" name="email" ngModel required email>
+        </div>
+        <div *ngIf="f.controls['email'].invalid && (f.controls['email'].dirty || f.controls['email'].touched)"
+          class="text-danger">
+          <div *ngIf="f.controls['email'].errors?.['required']">Email is required.</div>
+          <div *ngIf="f.controls['email'].errors?.['email']">Please enter a valid email address.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <div class="input-group">
+          <input id="phoneNumber" class="form-control" name="phoneNumber" ngModel required pattern="^[0-9]{10}$">
+        </div>
+        <div
+          *ngIf="f.controls['phoneNumber'].invalid && (f.controls['phoneNumber'].dirty || f.controls['phoneNumber'].touched)"
+          class="text-danger">
+          <div *ngIf="f.controls['phoneNumber'].errors?.['required']">Phone Number is required.</div>
+          <div *ngIf="f.controls['phoneNumber'].errors?.['pattern']">Phone Number must be exactly 10 digits.</div>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-group">
+          <input id="password" [type]="fieldTextType ? 'text' : 'password'" class="form-control" ngModel required  name="password" #myText
+            (keyup)="show(myText.value)" required>
+
+
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i class="fa" [ngClass]="{ 'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType}" (click)="toggleFieldTextType()"></i>
+            </span>
+          </div>
+
+        </div>
+     
+        <div *ngIf="error">
+          <p style="color: red;">Password is required</p>
+        </div>
+        <div *ngIf="patternError">
+          <ul style="color: red;">
+            <li>Contains at least one lowercase letter.</li>
+            <li>Contains at least one uppercase letter.</li>
+            <li>Contains at least one digit.</li>
+            <li>Contains at least one special character.</li>
+            <li>Is at least 8 characters long.</li>
+          </ul>
+        </div>
+
+        <!-- <div *ngIf="f.controls['password'].errors?.['pattern']">Password must include at least one uppercase letter, one lowercase letter, one digit, and be at least 8 characters long.</div> -->
+        <!-- </div> -->
+      </div>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+</ng-template>
+
+
+
+<!-- edit ng-template -->
+
+<ng-template #contentDetails let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ editMode ? 'Edit Doctor' : '' }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onEdit()" novalidate>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <div class="input-group">
+          <input id="firstName" class="form-control" [(ngModel)]="selectedDoctor.firstName" name="firstName">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <div class="input-group">
+          <input id="lastName" class="form-control" [(ngModel)]="selectedDoctor.lastName" name="lastName">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="qualification">Qualification</label>
+        <div class="input-group">
+          <input id="qualification" class="form-control" [(ngModel)]="selectedDoctor.qualification"
+            name="qualification">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="specialties">Specialties</label>
+        <div class="input-group">
+          <input id="specialties" class="form-control" [(ngModel)]="selectedDoctor.specialties" name="specialties">
+        </div>
+      </div>
+     
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <div class="input-group">
+          <input id="phoneNumber" class="form-control" [(ngModel)]="selectedDoctor.phoneNumber" name="phoneNumber">
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button *ngIf="editMode" type="submit" class="btn btn-info">Update</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
+
+
+
+
+<ng-template #contentDetails1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ editMode ? 'View Doctor' : '' }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card success-card">
+      <div class="card-body">
+        <div class="success-cont ">
+          <h3 style="color: #0a76d8;"><strong>Doctor Details</strong></h3>
+
+
+          <p class="card-text"><b>Name</b> : {{selectedDoctor.firstName}} {{selectedDoctor.lastName}}</p>
+
+          <p class="card-text"><b>Qualification : </b>{{selectedDoctor.qualification}}</p>
+
+          <p class="card-text"><b>specialties</b> : {{selectedDoctor.specialties}}</p>
+
+          <p class="card-text"><b>Email</b> : {{selectedDoctor.email}}</p>
+
+          <p class="card-text"><b>Phone Number</b> : {{selectedDoctor.phoneNumber}}</p>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template>

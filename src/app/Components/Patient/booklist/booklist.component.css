@@ -1,0 +1,29 @@
+.success-page-cont {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: flex;
+}
+
+.success-cont {
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    text-align: start !important;
+    padding-left: 25px;
+}
+
+.success-card .card-body {
+    padding: 30px 10px;
+}
+
+.success-cont p {
+    margin-bottom: 10px !important;
+}
+.py-5{
+    padding-top: 1rem!important;
+}

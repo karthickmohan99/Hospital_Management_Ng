@@ -1,0 +1,70 @@
+<div class="page-header">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="page-title">Booking</h3>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/patient/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item"><a routerLink="/patient/appointment">Appointment</a></li>
+                <li class="breadcrumb-item active">Booking</li>
+
+              
+                <li class="breadcrumb-item active">Booking</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="content success-page-cont">
+    <div class="container-fluid">
+    
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+            
+                <!-- Success Card -->
+                <div class="card success-card" >
+                    <div class="card-body">
+                        <div class="success-cont " >
+                            <h3 style="color: #0a76d8;"><strong>Session Details :</strong></h3>
+
+                            <p class="card-text"><b>Doctor Name</b> : {{session.doctorName}} </p>
+                            <p class="card-text space" style="margin-bottom: 30px;"><b>Doctor Email</b> : {{session.doctorName}}@gmail.com </p>
+
+
+                            <p class="card-text"><b>Date</b> : {{session.sessionDate}}</p>
+                            <p class="card-text"><b>Timing</b> : {{session.scheduleTime}}</p>
+                            <p class="card-text"><b>Consultation Fee</b> : ₹{{session.consultFee}}</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- /Success Card -->
+                
+                
+            </div>
+
+            <div class="col-lg-6">
+            
+                <!-- Success Card -->
+                <div class="card success-card">
+                    <div class="card-body appointment-sec">
+                        <h3><strong>Your Appointment Number :</strong></h3>
+                        <div class=" appointment" >
+                            
+                         <p>{{i}}</p>
+                            
+                        </div>
+                        <a href="#" class="btn btn-primary view-inv-btn" (click)="addSession()">Book Now</a>
+                    </div>
+                </div>
+                <!-- /Success Card -->
+                
+                
+            </div>
+        </div>
+
+        
+        
+    </div>
+</div>
+<router-outlet></router-outlet>

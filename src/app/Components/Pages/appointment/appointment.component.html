@@ -1,0 +1,119 @@
+<div class="row">
+  <div class="col-md-12">
+      <div class="page-header">
+          <div class="row">
+              <div class="col-sm-12">
+                  <h3 class="page-title">List of appointments</h3>
+                  <ul class="breadcrumb">
+                      <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Dashboard</a></li>
+              <li class="breadcrumb-item"><a routerLink="/admin/appointment">Appointments</a></li>
+              <li class="breadcrumb-item active">List</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      
+      <div class="appointment-tab">
+      
+         
+          
+          <div class="tab-content">
+          
+              <!-- Upcoming Appointment Tab -->
+              <div class="tab-pane show active" id="upcoming-appointments">
+                  <div class="card card-table mb-0">
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table table-hover table-center mb-0">
+                                  <thead>
+                                      <tr>
+                                          <th>Patient name</th>
+                                          <th>Appointment number</th>
+                                          <th>Session Title</th>
+                                          <th>Session Date & Time</th>
+                                          <th>Appointment Date</th>
+                                          <th class="text-center">Action</th>
+                                          <th></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor = "let appointment of appointments | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                                          <td>
+                                              <h2 class="table-avatar">
+                                                  <!-- <a href="patient-profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="../../../../assets/img/patients/patient.jpg" alt="User Image"></a> -->
+                                                  {{ appointment.patients.firstName }} {{ appointment.patientslastName }}
+                                              </h2>
+                                          </td>
+                                          <td>{{ appointment.appno }}</td>
+                                          <td>{{ appointment.session.sessionTitle }}</td>
+                                          <td>{{ appointment.session.sessionDate }} {{ appointment.session.scheduleTime }}</td>
+                                          <td>{{ appointment.sessionDate }}</td>
+                                          
+                                          
+                                          <td >
+                                              <div class="table-action" >
+                               
+                                                <a  (click)="deleteAppointment(appointment.apId)"href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+                                                  <i class="fas fa-times"></i> Cancel
+                                                </a>
+                                                  
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>		
+                          </div>
+                      </div>
+                      <div class="mt-8 py-5 d-flex justify-content-center align-items-center">
+                        <pagination-controls (pageChange)="p = $event">
+        
+                        </pagination-controls>
+        
+                    </div>
+                  </div>
+              </div>
+
+              
+              
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- <ng-template #contentDetails let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> View Appointment </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="card success-card" >
+          <div class="card-body">
+              <div class="success-cont " >
+                  <h3 style="color: #0a76d8;"><strong>Appointment Details</strong></h3>
+
+
+                  <p class="card-text"><b>Patient Name</b> : {{selectedAppointment.patients.firstName}} {{selectedAppointment.patients.lastName}}</p>
+
+                  <p class="card-text"><b>Application No : </b>{{selectedAppointment.appno}}</p>
+
+                  <p class="card-text"><b>Session</b> : {{selectedAppointment.session.sessionTitle}}</p>
+
+                  <p class="card-text"><b>Doctor Name</b> : {{selectedAppointment.session.doctor.firstName}}</p>
+
+                  <p class="card-text"><b>Date & Time</b> : {{selectedAppointment.session.sessionDate}} {{selectedAppointment.session.scheduleTime}}</p>
+
+               
+                  
+
+
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template> -->

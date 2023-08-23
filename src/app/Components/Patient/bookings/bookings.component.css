@@ -1,0 +1,49 @@
+.space {
+    margin-bottom: 30px !important;
+}
+
+/* .success-cont p {
+    margin-bottom: 10px !important;
+} */
+
+.success-cont {
+    text-align: start;
+}
+
+.appointment{
+    height: 160px;
+    width: 200px;
+    color: #fff;
+    display: block;
+    
+    
+    background: #0a76d8;
+    
+    font-size: 70px;
+    font-weight: 700;
+    text-align: center;
+    
+    
+    
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+
+
+.appointment-sec{
+    display: flex;
+    /* padding: 9px; */
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.py-5{
+    padding-top: 1rem!important;
+}

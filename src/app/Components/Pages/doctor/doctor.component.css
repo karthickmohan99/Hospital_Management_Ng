@@ -1,0 +1,23 @@
+
+
+/* @import url('assets/css/bootstrap.min.css');
+@import url('src/assets/css/style.css'); */
+
+.btn-primary.disabled, .btn-primary:disabled {
+  background-color: #bbbbbb;
+  border-color: #808080;
+  color: #fff;
+  
+}
+.custom-search-input {
+    width: 450px; 
+  }
+  
+  .py-5{
+    padding-top: 1rem!important;
+}
+
+.fa-eye-slash:hover,
+.fa-eye:hover {
+  cursor: pointer;
+}

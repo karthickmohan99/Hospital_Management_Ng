@@ -1,0 +1,62 @@
+<div class="page-header">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="page-title">List of Bookings</h3>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/patient/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item"><a routerLink="/patient/mybooking">Booking</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="content success-page-cont">
+    <div class="container-fluid">
+    
+        <div class="row justify-content-center"  >
+            <div class="col-lg-6" *ngFor = "let booking of bookings | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+            
+                <!-- Success Card -->
+                <div class="card success-card" >
+                    <div class="card-body">
+                        <div class="success-cont " >
+                            <h3 style="color: #0a76d8;"><strong>Booking Details</strong></h3>
+
+                            <span class="card-text"><b>Booking Date</b> : {{booking.sessionDate}}</span><br>
+
+                            <p class="card-text"><b>Session</b> : {{booking.session.sessionTitle}}</p>
+
+                            <p class="card-text"><b>Appointment Number : </b>{{booking.appno}}</p>
+
+                            <p class="card-text"><b>Doctor Name</b> : {{booking.session.doctorName}} </p>
+
+                            <p class="card-text"><b>Schedule Date</b> : {{booking.session.sessionDate}}</p>
+                         
+                            <p class="card-text"><b>Timing</b> : {{booking.session.scheduleTime}}</p>
+
+                        <button  (click) = "deleteAppointments(booking.apId)" class = "btn btn-danger" style="padding-left: 0px"> Cancel Now</button>
+
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- /Success Card -->
+                
+                
+            </div>
+
+            
+        </div>
+
+        <div class="mt-8 py-5 d-flex justify-content-center align-items-center">
+            <pagination-controls (pageChange)="p = $event">
+
+            </pagination-controls>
+
+        </div>
+        
+    </div>
+</div>
+<router-outlet></router-outlet>

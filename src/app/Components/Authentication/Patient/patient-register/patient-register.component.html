@@ -1,0 +1,192 @@
+<div class="main-wrapper">
+
+    <!-- Header -->
+    <app-home-header></app-home-header>
+    <!-- /Header -->
+
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+
+                    <!-- Register Content -->
+                    <div class="account-content">
+                        <div class="row align-items-center justify-content-center">
+                            <div class="col-md-7 col-lg-6 login-left">
+                                <img src="assets/img/login-banner.png" class="img-fluid" alt="Doccure Register">
+                            </div>
+                            <div class="col-md-12 col-lg-6 login-right">
+                                <div class="login-header">
+                                    <h3>Patient Register <a [routerLink]="['/doctorlogin']">Are you a Doctor?</a></h3>
+                                </div>
+
+                                <!-- Register Form -->
+                                <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group ">
+                                        
+                                                <label for="firstName" class="form-label">First Name</label>
+                                                <input type="text" id="firstName" class="form-control" formControlName="firstName" aria-describedby="firstNameHelpBlock">
+                                                <div *ngIf="formControls['firstName'].touched && formControls['firstName'].hasError('required')"
+                                                    id="firstNameHelpBlock" class="text-danger">
+                                                    First Name is required.
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <!-- <input type="date" class="form-control floating"  formControlName="dob"  placeholder="Date Of Birth" required>
+                                                <label  class=" focus-label"></label> -->
+        
+        
+                                                <!-- <label for="floatingInputValue" style="color:grey; padding-left: 5px;">Date Of Birth</label>
+                                                <input type="date" class="form-control" formControlName="dob" id="floatingInputValue" required>
+                                                -->
+                                                <label for="inputdob" class="form-label">Date Of Birth</label>
+                                                <input type="date" id="inputdob" formControlName="dob" class="form-control"
+                                                    aria-describedby="dobHelpBlock">
+                                                <div *ngIf="submitted&&formControls['dob'].touched && formControls['dob'].hasError('required')"
+                                                    id="dobHelpBlock" class="text-danger">
+                                                    Date of Birth is required.
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="d-block">Gender:</label>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" formControlName="gender" value="male" required>
+                                                    <label class="form-check-label" for="gender_male">Male</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" formControlName="gender" value="female"
+                                                    required>
+                                                    <label class="form-check-label" for="gender_female">Female</label>
+                                                </div>
+                                                <div *ngIf="submitted && formControls['gender'].invalid"
+                                                class="text-danger">
+                                                Gender is required.
+                                            </div>
+                                            </div>
+                                           
+                                           
+                                            <div class="form-group">
+                                                <label for="inputPassword" class="form-label">Password</label>
+                                                <div class="input-group">
+                                                  <!-- Change input type to be able to accept dynamic data -->
+                                                  <input [type]="fieldTextType ? 'text' : 'password'" id="inputPassword" class="form-control" formControlName="password" aria-describedby="passwordHelpBlock">
+                                                  <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                      <i
+                                                        class="fa"
+                                                        [ngClass]="{
+                                                          'fa-eye-slash': !fieldTextType,
+                                                          'fa-eye': fieldTextType
+                                                        }"
+                                                        (click)="toggleFieldTextType()"
+                                                      ></i>
+                                                    </span>
+                                                  </div>
+                                                </div>
+                                                <div *ngIf="formControls['password'].touched">
+                                                  <div *ngIf="formControls['password'].hasError('required')" class="text-danger">
+                                                    Password is required.
+                                                  </div>
+                                                  <div *ngIf="formControls['password'].hasError('pattern')" class="text-danger">
+                                                    Password must be at least 8 characters long and contain both letters and numbers.
+                                                  </div>
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group ">
+                                                <!-- <input type="text" class="form-control floating" formControlName="lastName" required>
+                                                <label class="focus-label">Last Name</label> -->
+                                                <label for="inputlastName" class="form-label">Last Name</label>
+                                                <input type="text" id="inputlastName" class="form-control"
+                                                    formControlName="lastName" aria-describedby="lastNameHelpBlock">
+                                                <div *ngIf="formControls['lastName'].touched && formControls['lastName'].hasError('required')"
+                                                    id="lastNameHelpBlock" class="text-danger">
+                                                    Last Name is required.
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <label for="inputemail" class="form-label">Email</label>
+                                                <input type="email" id="inputemail" class="form-control" formControlName="email"
+                                                    aria-describedby="emailHelpBlock">
+                                                <div *ngIf="formControls['email'].touched && formControls['email'].hasError('required')"
+                                                    id="emailHelpBlock" class="text-danger">
+                                                    Email is required.
+                                                </div>
+                                                <div *ngIf="formControls['email'].touched && formControls['email'].hasError('email')"
+                                                    id="emailHelpBlock" class="text-danger">
+                                                    Invalid email format.
+                                                </div>        
+                                            </div>
+                               
+                                            <div class="form-group">
+
+
+                                                <label for="inputphoneNumber" class="form-label">Mobile Number</label>
+                                                <input type="text" id="inputphoneNumber" formControlName="phoneNumber"
+                                                    class="form-control" aria-describedby="phoneNumberHelpBlock">
+                                                <!-- <input type="text" class="form-control floating" formControlName="phoneNumber" required>
+                                                <label class="focus-label">Mobile Number</label> -->
+                                                <div *ngIf="formControls['phoneNumber'].touched && formControls['phoneNumber'].hasError('required')"
+                                                    id="phoneNumberHelpBlock" class="text-danger">
+                                                    Mobile Number is required.
+                                                </div>
+                                                <div *ngIf="formControls['phoneNumber'].touched && formControls['phoneNumber'].hasError('pattern')"
+                                                    id="phoneNumberHelpBlock" class="text-danger">
+                                                    Mobile Number must be a 10-digit number.
+                                                </div>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                   
+                                    
+                                    <div class="text-end">
+                                        <a class="forgot-link" [routerLink]="['/patientlogin']">Already have an account?</a>
+                                    </div>
+                                    <button [disabled]="signupForm.invalid" class="btn btn-primary btn-block btn-lg login-btn"
+                                        type="submit">Signup</button>
+
+                                    <!-- <div class="login-or">
+                                        <span class="or-line"></span>
+                                        <span class="span-or">or</span>
+                                    </div>
+                                    <div class="row form-row social-login">
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
+                                        </div>
+                                    </div> -->
+                                </form>
+
+                                <!-- /Register Form -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Register Content -->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /Page Content -->
+
+   <!-- Footer -->
+   <app-home-footer></app-home-footer>
+<!-- /Footer -->
+
+</div>

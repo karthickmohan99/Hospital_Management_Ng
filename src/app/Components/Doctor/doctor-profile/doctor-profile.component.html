@@ -1,0 +1,73 @@
+
+            
+          
+
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <!-- Profile Settings Form -->
+                            <form>
+                                <div class="row form-row">
+                                    <div class="col-12 col-md-12">
+                                        <div class="form-group">
+                                            <div class="change-avatar">
+                                                <div class="profile-img">
+                                                    <img src="../../../../assets/img/Avatar/download (1).jpg" alt="User Image">
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>First Name</label>
+                                            <input type="text" class="form-control" name="firstName" [(ngModel)]="details.firstName">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Last Name</label>
+                                            <input type="text" class="form-control" name="lastName"  [(ngModel)]="details.lastName">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Qualification</label>
+                                            
+                                                <input type="text" class="form-control" name="dob"  [(ngModel)]="details.qualification">
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label class="d-block">Specialties</label>
+                                            <input type="text" class="form-control" name="dob"  [(ngModel)]="details.specialties">
+                                            
+                                    </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Email ID</label>
+                                            <input type="email" class="form-control" name="email"  [(ngModel)]="details.email">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Mobile</label>
+                                            <input type="text" [(ngModel)]="details.phoneNumber" name="phoneNumber"  class="form-control">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="submit-section">
+                                    <button type="submit" (click)="onEdit()" class="btn btn-primary submit-btn">Save Changes</button>
+                                    <button type="submit" (click)="onDelete()" class="btn btn-danger submit-btn">Delete account</button>
+                                </div>
+                            </form>
+                            <!-- /Profile Settings Form -->
+                            
+                        </div>
+                    </div>
+                    <router-outlet></router-outlet>
+  
+   

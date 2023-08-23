@@ -1,0 +1,72 @@
+<!-- Profile Sidebar -->
+<div class="profile-sidebar">
+    <div class="widget-profile pro-widget-content">
+        <div class="profile-info-widget">
+            <a href="#" class="booking-doc-img">
+                <img src="../../../../assets/img/Avatar/7309681.jpg" alt="User Image">
+            </a>
+            <div class="profile-det-info">
+                <h3>Mr. {{detail.firstName}} {{detail.lastName}}</h3>
+                
+                <div class="patient-details">
+                    <h5 class="mb-0">{{detail.email}}</h5>
+                    <h5 class="mb-0">{{detail.phoneNumber}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-widget">
+        <nav class="dashboard-menu">
+            <ul>
+                <li class="active">
+                    <a routerLink="/patient/dashboard">
+                        <i class="fas fa-columns"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/patient/doctors">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Doctors</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/patient/appointment">
+                        <i class="fas fa-user-injured"></i>
+                        <span>Book Appointment</span>
+                    </a>
+                </li>
+              
+
+                <!-- <li>
+                    <a [routerLink]="['/patient/mybooking']">
+                        <i class="fas fa-hourglass-start"></i>
+                        <span> Bookings</span>
+                    </a>
+                </li> -->
+                
+                <li>
+                    <a routerLink="/patient/mybooking">
+                        
+                        <i class="fas fa-check-circle"></i>
+                        <span>My booking</span>
+                        
+                    </a>
+                </li>
+
+                <li>
+                    <a routerLink="/patient/profile">
+                        <i class="fas fa-user-cog"></i>
+                        <span>Profile Settings</span>
+                        
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </nav>
+        
+    </div>
+</div>
+
+<!-- /Profile Sidebar -->

@@ -1,0 +1,329 @@
+
+<div class="row">
+  <div class="col-md-12">
+      <div class="page-header">
+          <div class="row">
+              <div class="col-sm-12">
+            
+                  <ul class="breadcrumb">
+                      <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Dashboard</a></li>
+              <li class="breadcrumb-item"><a routerLink="/admin/schedule">Schedule</a></li>
+              <li class="breadcrumb-item active">List</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+     <!-- Page Header -->
+     <div class="d-flex align-items-center mb-3">
+    
+      <h2 class="page-title ml-2 font-weight-bold">List of Sessions</h2>
+      <div class="ml-auto mr-5">
+        <p class="mb-0">
+          <i class="bi bi-calendar"></i> Today Date
+        </p>
+        <p class="mb-0 pt-2">
+          {{ currentDate }}
+        </p>
+      </div>
+      
+      
+    </div>
+        <div class="page-header">
+            <div class="d-flex align-items-center justify-content-between">
+                
+                <button class="btn btn-primary mr-4 " (click)="open(content)" style="margin-bottom: 8px;">
+                    <i class="bi bi-plus-circle"></i> Add New
+                </button>
+            </div>
+        </div>
+   
+    <!-- /Page Header -->
+      <div class="appointment-tab">
+      
+         
+          
+          <div class="tab-content">
+          
+              <!-- Upcoming Appointment Tab -->
+              <div class="tab-pane show active" id="upcoming-appointments">
+                  <div class="card card-table mb-0">
+                      <div class="card-body">
+                          <div class="table-responsive">
+                              <table class="table table-hover table-center mb-0">
+                                  <thead>
+                                      <tr>
+                                        <th>Session Title</th>
+                                        <th>Doctor</th>
+                                        <th>Schedule Date & Time</th>
+                                        <th>AppointmentNumber</th>
+                                        <th>Consultant Fees</th>
+                                          <th class="text-center">Action</th>
+                                          <th></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let session of sessionDetails | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                                      <td>{{ session.sessionTitle }}</td>
+                                      <td>{{ session.doctorName }}</td>
+                                      <td>
+                                        {{ formatDate(session.sessionDate) }}
+                                        <br>
+                                        <small>{{ formatTime(session.scheduleTime) }}</small>
+                                      </td>
+                                      
+                                      <td>{{ session.appointmentNumber }}</td>
+                                      <td>{{ session.consultFee }}</td>
+                                      <td class="text-right">
+                                        <div class="table-action">
+                                          <a (click)="openDetails(contentDetails1, session,true)"href="javascript:void(0);" class="btn btn-sm bg-info-light">
+                                            <i class="far fa-eye"></i> View
+                                          </a>
+                                          
+                                          <a (click)="openDetails(contentDetails,session,true)"href="javascript:void(0);" class="btn btn-sm bg-success-light">
+                                            <i class="fas fa-check"></i> Edit
+                                          </a>
+                                          <a  (click)="deleteSession(session.sid)"href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+                                            <i class="fas fa-times"></i> Cancel
+                                          </a>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                              </table>		
+                          </div>
+                      </div>
+
+                      <div class="mt-8 py-5 d-flex justify-content-center align-items-center">
+                        <pagination-controls (pageChange)="p = $event">
+            
+                        </pagination-controls>
+            
+                    </div>
+                  </div>
+              </div>
+
+              
+              
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add New Session</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate>
+      <div class="form-group">
+        <label for="sessionTitle">Session Title</label>
+        <div class="input-group">
+          <input id="sessionTitle" class="form-control" name="sessionTitle" ngModel required>
+        </div>
+         <div *ngIf="f.controls['sessionTitle'].invalid && (f.controls['sessionTitle'].dirty || f.controls['sessionTitle'].touched)"
+          class="text-danger">
+       <div *ngIf="f.controls['sessionTitle'].errors?.['required']">Title is required.</div>
+       </div>
+      </div>
+      <div class="form-group">
+        <label for="selectDoctor">Select Doctor</label>
+        <div class="input-group">
+          <select (change)="onSelected($event)" id="selectDoctor" class="form-control" name="doctor"  [(ngModel)]="defaultValue" required>
+            <option>Select Doctor </option>
+
+            <option *ngFor="let doctor of doctorss">{{ doctor.firstName }}</option>
+          </select>
+        </div>
+        <div *ngIf="f.controls['doctor'].invalid && (f.controls['doctor'].dirty || f.controls['doctor'].touched)"
+          class="text-danger">
+       <div *ngIf="f.controls['doctor'].errors?.['required']">Doctor name is required.</div>
+       </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="appointmentNumber">Appointment Number</label>
+        <div class="input-group">
+          <input id="appointmentNumber" type="number" class="form-control" name="appointmentNumber" ngModel required>
+        </div>
+        <div *ngIf="f.controls['appointmentNumber'].invalid && (f.controls['appointmentNumber'].dirty || f.controls['appointmentNumber'].touched)"
+          class="text-danger">
+       <div *ngIf="f.controls['appointmentNumber'].errors?.['required']">Appointment number is required.</div>
+       </div>
+      </div>
+      <div class="form-group">
+        <label for="sessionDate">Session Date</label>
+        <div class="input-group">
+          <input id="sessionDate" type="date" class="form-control" name="sessionDate" ngModel required>
+        </div>
+        <div *ngIf="f.controls['sessionDate'].invalid && (f.controls['sessionDate'].dirty || f.controls['sessionDate'].touched)"
+          class="text-danger">
+       <div *ngIf="f.controls['sessionDate'].errors?.['required']">Session date is required.</div>
+       </div>
+      </div>
+     <div class="form-group">
+        <label for="scheduleTime">Schedule Time (24hrs)</label>
+        <div class="input-group">
+          <input id="scheduleTime" type="text" placeholder="HH:MM:SS" pattern="^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$" class="form-control" name="scheduleTime" required ngModel>
+        </div>
+        <div *ngIf="f.controls['scheduleTime'].invalid && (f.controls['scheduleTime'].dirty || f.controls['scheduleTime'].touched)"
+          class="text-danger">
+          <div *ngIf="f.controls['scheduleTime'].errors?.['required']">Schedule Time is required.</div>
+          <div *ngIf="f.controls['scheduleTime'].errors?.['pattern']">Please enter a valid time in HH:MM:SS format.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="consultFee">Consult Fee</label>
+        <div class="input-group">
+          <input id="consultFee" type="number" step="0.01" class="form-control" name="consultFee" ngModel required>
+        </div>
+        <div *ngIf="f.controls['consultFee'].invalid && (f.controls['consultFee'].dirty || f.controls['consultFee'].touched)"
+          class="text-danger">
+       <div *ngIf="f.controls['consultFee'].errors?.['required']">Consult fee is required.</div>
+       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="f.invalid"  class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+      </div>
+     
+    </form>
+  </div>
+  
+</ng-template>
+ 
+
+
+
+
+
+<ng-template #contentDetails let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ editMode ? 'Edit Session' : '' }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onEdit()" novalidate>
+      <div class="form-group">
+        <label for="sessionTitle">Session Title</label>
+        <div class="input-group">
+          <input id="sessionTitle" class="form-control" [(ngModel)]="selectedSessions.sessionTitle" name="sessionTitle">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="selectDoctor">Select Doctor</label>
+        <div class="input-group">
+          <select (change)="onSelected($event)" id="selectDoctor" class="form-control" name="selectDoctor"  [(ngModel)]="selectedSessions.doctorName">
+            <option>Select Doctor </option>
+
+            <option *ngFor="let doctor of doctorss">{{ doctor.firstName }}</option>
+          </select>
+          
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="appointmentNumber">Appointment Number</label>
+        <div class="input-group">
+          <input id="appointmentNumber" class="form-control" [(ngModel)]="selectedSessions.appointmentNumber" name="appointmentNumber">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="consultFee">Consultant Fees</label>
+        <div class="input-group">
+          <input id="consultFee" class="form-control" [(ngModel)]="selectedSessions.consultFee" name="consultFee">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="scheduleTime"><small>Schedule Time (24hrs)</small></label>
+
+        <div class="input-group">
+          <input id="scheduleTime" class="form-control" [(ngModel)]="selectedSessions.scheduleTime" name="scheduleTime">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sessionDate">Session Date</label>
+        <div class="input-group">
+          <input id="sessionDate"  class="form-control" [(ngModel)]="selectedSessions.sessionDate" name="sessionDate">
+        </div>
+      </div>
+      
+      <div class="text-center">
+        <button  *ngIf="editMode" type="submit" class="btn btn-info">Update</button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
+
+
+<ng-template #contentDetails1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ editMode ? 'View Session' : '' }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card success-card" >
+      <div class="card-body">
+          <div class="success-cont " >
+            <h3 style="color: #0a76d8;"><strong>Session Details</strong></h3>
+
+
+            <p class="card-text"><b>Session Title</b> : {{selectedSessions.sessionTitle}} </p>
+
+            <p class="card-text"><b>Doctor Name : </b>{{selectedSessions.doctorName}} </p>
+
+            <p class="card-text"><b>Appointment Number</b> : {{selectedSessions.appointmentNumber}}</p>
+
+            <p class="card-text"><b>Schedule Date & Time</b> : {{selectedSessions.sessionDate}} - {{ formatTime(selectedSessions.scheduleTime) }}</p>
+         
+            <p class="card-text"><b>Consultant Fees</b> :{{selectedSessions.consultFee|currency:'INR':'symbol-narrow'}}</p>
+
+
+              
+          </div>
+      </div>
+  </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+  </div>
+</ng-template>
+
+
+
+
+
+  

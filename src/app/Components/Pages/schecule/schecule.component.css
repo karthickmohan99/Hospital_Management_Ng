@@ -1,0 +1,9 @@
+.py-5{
+    padding-top: 1rem!important;
+}
+.btn-primary.disabled, .btn-primary:disabled {
+    background-color: #bbbbbb;
+    border-color: #808080;
+    color: #fff;
+    
+}

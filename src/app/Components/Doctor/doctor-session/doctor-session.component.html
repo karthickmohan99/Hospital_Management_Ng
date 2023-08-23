@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">List of sessions</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/doctor/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item"><a routerLink="/doctor/session">Sessions</a></li>
+                <li class="breadcrumb-item active">List</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="session-tab">
+        
+           
+            
+            <div class="tab-content">
+            
+                <!-- Upcoming Session Tab -->
+                <div class="tab-pane show active" id="upcoming-sessions">
+                    <div class="card card-table mb-0">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-center mb-0">
+                                    <thead>
+                                        <tr>
+                                       
+                                            <th>Session Title</th>
+                                            <th>Session Date & Time</th>
+                                            <th>Max num that can be booked</th>
+                                            <th >Action</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor = "let session of sessions | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+                                            <td>
+                                                <h2 class="table-avatar">
+                                                    <!-- <a href="patient-profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="../../../../assets/img/patients/patient.jpg" alt="User Image"></a> -->
+                                                    {{ session.sessionTitle }}
+                                                </h2>
+                                            </td>
+                                            
+                                            <td>{{ session.sessionDate }} {{ session.scheduleTime }}</td>
+                                           
+                                            <td class="text-center">{{ session.appointmentNumber }}</td>
+                                           
+                                            
+                                            
+                                            <td >
+                                                <div class="table-action" >
+                                 
+                                                    <a href="#" (click)="deleteSessions(session.sid)" class="btn btn-sm bg-danger-light" style="margin-left: 5px;">
+                                                        <i class="fas fa-times"></i> Cancel
+                                                    </a>
+                                                    
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>		
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+      
+                
+            </div>
+            <div class="mt-8 py-5 d-flex justify-content-center align-items-center">
+                <pagination-controls (pageChange)="p = $event">
+
+                </pagination-controls>
+
+            </div>
+
+           
+        </div>
+    </div>
+</div>

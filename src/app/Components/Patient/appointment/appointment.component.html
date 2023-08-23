@@ -1,0 +1,40 @@
+<div class="page-header">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="page-title">List of Appointments</h3>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/patient/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item"><a routerLink="/patient/appointment">Appointment</a></li>
+                <li class="breadcrumb-item active">List</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    
+        <div class="col-12 col-md-6 col-lg-4 d-flex" *ngFor = "let session of sessions | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+            <div class="card flex-fill">
+                <div class="card-header">
+                    <h5 class="card-title mb-0"><b>{{session.sessionTitle}}</b></h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text"><b>Doctor Name</b> : {{session.doctorName}} </p>
+                    <p class="card-text"><b>Date</b> : {{session.sessionDate}}</p>
+                    <p class="card-text"><b>Timing</b> : {{session.scheduleTime}}</p>
+                    <!-- <a class="btn btn-primary" href="#">Book</a> -->
+                <button [routerLink]="['/patient/bookings', session.sid]" (click)="getAppNo()" class = "btn btn-primary" style="margin-left: 10px"> Book</button>
+
+                </div>
+            </div>
+        </div>
+        <router-outlet></router-outlet>
+        
+</div>
+
+<div class="mt-8 py-5 d-flex justify-content-center align-items-center">
+    <pagination-controls (pageChange)="p = $event">
+
+    </pagination-controls>
+
+</div>

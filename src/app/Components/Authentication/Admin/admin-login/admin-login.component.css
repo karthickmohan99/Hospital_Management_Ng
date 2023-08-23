@@ -1,0 +1,11 @@
+.btn-primary.disabled, .btn-primary:disabled {
+    background-color: #bbbbbb;
+    border-color: #808080;
+    color: #fff;
+    
+}
+
+.fa-eye-slash:hover,
+.fa-eye:hover {
+  cursor: pointer;
+}

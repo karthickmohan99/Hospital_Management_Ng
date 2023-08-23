@@ -1,0 +1,133 @@
+/* .product_img{
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+.product_title{
+     display: -webkit-box; 
+     overflow: hidden;
+     text-overflow: ellipsis;
+     -webkit-line-clamp: 2; 
+     -webkit-box-orient: vertical;
+     height: 42px;
+}
+
+::ng-deep{
+
+
+.ngx-pagination {
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+ gap: 4px;
+}
+
+.ngx-pagination li{
+    width: 35px;
+    height: 35px; 
+    border-radius: 50% !important;
+    display: flex important;
+    background: #f8f8f8;
+    justify-content: center; 
+    align-items: center;
+
+&.small-screen {
+    display: none !important;
+
+}
+
+&.pagination-previous, 
+&.pagination-next
+a,span{
+
+width: 100%;
+
+height: 100%;
+
+border-radius: 50%;
+ overflow: hidden;
+  color: #f8f8f8;
+
+}
+
+
+}
+}
+
+
+.ngx-pagination .pagination-previous a:before,
+
+.ngx-pagination .pagination-previous.disabled:before, 
+
+.ngx-pagination .pagination-next::before{  
+    margin-right: 0px !important; 
+    font-size: 26px; 
+    margin-top: -8px; 
+    position: absolute; 
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;  
+    border: 1px solid red; 
+    display: flex !important; 
+    justify-content: center; 
+    align-items: center; 
+    color: #2199e8;
+    left: 0;
+    pointer-events: none;
+
+}
+
+
+.ngx-pagination .pagination-next::before{
+
+content: '\bb';
+}
+
+.ngx-pagination .pagination-next::after{
+
+    display: none !important;
+}
+
+.ngx-pagination .pagination-previous.disabled.pagination-previous.disabled:before,
+
+.ngx-pagination .pagination-next.disabled:before{
+     opacity: 0.4;
+
+}
+
+.ngx-pagination .pagination-previous.disabled:hover{
+
+    background: #f8f8f8 important;
+}
+
+.ngx-pagination a:hover, 
+.ngx-pagination button:hover{
+
+background: initial important;
+} 
+ .ngx-pagination li {
+    display: inline-block !important;
+    color: #6c757d !important;
+    pointer-events: none !important;
+    cursor: auto !important;
+    background-color: #fff !important;
+    border-color: #dee2e6 !important;
+    margin-left: 0 !important;
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+    position: relative !important;
+   
+    padding: 0.5rem 0.75rem !important;
+    margin-left: -1px !important;
+    line-height: 1.25 !important;
+    
+    background-color: #fff !important;
+    border: 1px solid #dee2e6 !important;
+} */
+
+.py-5{
+    padding-top: 1rem!important;
+}
