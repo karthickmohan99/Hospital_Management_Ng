@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class PatientService {
   
 
 
-  private baseUrl = 'http://localhost:9001/api/patient'; // Replace with your actual backend API URL
+  private baseUrl = `${environment.apiUrl}/api/patient`; // Replace with your actual backend API URL
 
   constructor(private http: HttpClient) {}
 

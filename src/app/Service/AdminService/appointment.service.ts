@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,13 @@ export class AppointmentService {
 
 
 
-  private baseUrl = 'http:localhost:9001/api/appointment'; 
+  private baseUrl = `${environment.apiUrl}/api/appointment`; 
+  
 
   constructor(private http: HttpClient) {}
 
   getAppointments(): Observable<any[]> {
-    const getUrl = 'http:localhost:9001/api/appointment/listall';
+    const getUrl = `${this.baseUrl}/listall`;
     
     return this.http.get<any[]>(getUrl);
   }

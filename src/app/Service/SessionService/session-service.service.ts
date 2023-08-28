@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionServiceService {
 
-  private apiUrl = 'http://localhost:9001/api/session';
+  private apiUrl = `${environment.apiUrl}/api/session`;
 
   private myBehaviorSubject = new BehaviorSubject<number>(0);
   

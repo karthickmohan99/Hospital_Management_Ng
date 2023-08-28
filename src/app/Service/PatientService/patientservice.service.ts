@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class PatientserviceService {
 
-    private apiUrl = 'http://localhost:9001/api/patient';
+    private apiUrl = `${environment.apiUrl}/api/patient`;
 
     private myBehaviorSubject = new BehaviorSubject<string>('patient');
     
